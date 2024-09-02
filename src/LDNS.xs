@@ -512,7 +512,7 @@ addr2name(obj,addr_in)
             {
                 ldns_rr *rr = ldns_rr_list_rr(names,i);
                 ldns_rdf *name_rdf = ldns_rr_rdf(rr,0);
-                char *name_str = randomize_capitalization(ldns_rdf2str(name_rdf));
+                char *name_str = ldns_rdf2str(name_rdf);
 
                 SV* sv = newSVpv(name_str,0);
                 mXPUSHs(sv);
@@ -1644,7 +1644,7 @@ char *
 rr_owner(obj)
     Zonemaster::LDNS::RR obj;
     CODE:
-        RETVAL = randomize_capitalization(ldns_rdf2str(ldns_rr_owner(obj)));
+        RETVAL = ldns_rdf2str(ldns_rr_owner(obj));
     OUTPUT:
         RETVAL
     CLEANUP:
@@ -1794,7 +1794,7 @@ char *
 rr_ns_nsdname(obj)
     Zonemaster::LDNS::RR::NS obj;
     CODE:
-        RETVAL = randomize_capitalization(ldns_rdf2str(ldns_rr_rdf(obj, 0)));
+        RETVAL = ldns_rdf2str(ldns_rr_rdf(obj, 0));
     OUTPUT:
         RETVAL
     CLEANUP:
@@ -1815,7 +1815,7 @@ char *
 rr_mx_exchange(obj)
     Zonemaster::LDNS::RR::MX obj;
     CODE:
-        RETVAL = randomize_capitalization(D_STRING(obj, 1));
+        RETVAL = D_STRING(obj, 1);
     OUTPUT:
         RETVAL
     CLEANUP:
@@ -1854,7 +1854,7 @@ char *
 rr_soa_mname(obj)
     Zonemaster::LDNS::RR::SOA obj;
     CODE:
-        RETVAL = randomize_capitalization(D_STRING(obj,0));
+        RETVAL = D_STRING(obj,0);
     OUTPUT:
         RETVAL
     CLEANUP:
@@ -1864,7 +1864,7 @@ char *
 rr_soa_rname(obj)
     Zonemaster::LDNS::RR::SOA obj;
     CODE:
-        RETVAL = randomize_capitalization(D_STRING(obj,1));
+        RETVAL = D_STRING(obj,1);
     OUTPUT:
         RETVAL
     CLEANUP:
@@ -2220,7 +2220,7 @@ char *
 rr_nsec_next(obj)
     Zonemaster::LDNS::RR::NSEC obj;
     CODE:
-        RETVAL = randomize_capitalization(D_STRING(obj,0));
+        RETVAL = D_STRING(obj,0);
     OUTPUT:
         RETVAL
 
@@ -2487,7 +2487,7 @@ char *
 rr_ptr_ptrdname(obj)
     Zonemaster::LDNS::RR::PTR obj;
     CODE:
-        RETVAL = randomize_capitalization(D_STRING(obj,0));
+        RETVAL = D_STRING(obj,0);
     OUTPUT:
         RETVAL
     CLEANUP:
@@ -2500,7 +2500,7 @@ char *
 rr_cname_cname(obj)
     Zonemaster::LDNS::RR::CNAME obj;
     CODE:
-        RETVAL = randomize_capitalization(D_STRING(obj,0));
+        RETVAL = D_STRING(obj,0);
     OUTPUT:
         RETVAL
     CLEANUP:
@@ -2512,7 +2512,7 @@ char *
 rr_dname_dname(obj)
     Zonemaster::LDNS::RR::DNAME obj;
     CODE:
-        RETVAL = randomize_capitalization(D_STRING(obj,0));
+        RETVAL = D_STRING(obj,0);
     OUTPUT:
         RETVAL
     CLEANUP:
