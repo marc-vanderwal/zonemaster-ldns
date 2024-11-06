@@ -11,6 +11,9 @@
 # Avoid Github control files
 ^\.github/
 
+# Avoid control files from Debian when building packages
+^debian/
+
 # Avoid autotools input files
 \.m4$
 \.ac$
